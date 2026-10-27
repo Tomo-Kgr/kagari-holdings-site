@@ -751,6 +751,11 @@ blockquote p {
   background: var(--white);
 }
 
+.person-card:only-child {
+  grid-column: 1 / -1;
+  min-height: auto;
+}
+
 .person-card .role {
   margin: 0 0 1rem;
   color: var(--burgundy);
