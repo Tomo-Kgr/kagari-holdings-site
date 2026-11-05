@@ -1,4 +1,6 @@
 .vercel
+.drafts/
+.review/
 .env*
 node_modules
 dist

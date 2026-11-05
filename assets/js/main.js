@@ -2,7 +2,7 @@ const header = document.querySelector("[data-header]");
 const navToggle = document.querySelector(".nav-toggle");
 const nav = document.querySelector("#site-nav");
 const revealTargets = document.querySelectorAll(".reveal");
-const menuBreakpoint = window.matchMedia("(max-width: 1180px)");
+const menuBreakpoint = window.matchMedia("(max-width: 1280px)");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 function updateHeader() {

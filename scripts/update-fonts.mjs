@@ -9,7 +9,7 @@ const pages = [];
 
 async function collectPages(dir) {
   for (const entry of await fs.readdir(dir, { withFileTypes: true })) {
-    if (entry.name.startsWith(".") || entry.name === "node_modules") continue;
+    if (entry.name.startsWith(".") || ["node_modules", "dist"].includes(entry.name)) continue;
     const file = path.join(dir, entry.name);
     if (entry.isDirectory()) await collectPages(file);
     else if (entry.name.endsWith(".html")) pages.push(file);
@@ -25,6 +25,7 @@ async function download(url) {
 }
 
 await collectPages(root);
+if (process.argv.includes("--include-drafts")) await collectPages(path.join(root, ".drafts"));
 let text = Array.from({ length: 95 }, (_, index) => String.fromCharCode(index + 32)).join("") + "\u00a0\u00a9\u00ae";
 for (const file of pages) text += await fs.readFile(file, "utf8");
 const characters = [...new Set([...text].filter(char => char.codePointAt(0) >= 32))].sort().join("");
