@@ -603,6 +603,12 @@ blockquote p {
   text-align: right;
 }
 
+.company-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2.5rem;
+}
+
 .company-table {
   margin: 0;
   border-top: 1px solid var(--line);
@@ -610,7 +616,7 @@ blockquote p {
 
 .company-table div {
   display: grid;
-  grid-template-columns: 170px 1fr;
+  grid-template-columns: 170px minmax(0, 1fr);
   gap: 1.5rem;
   padding: 1.35rem 0;
   border-bottom: 1px solid var(--line);
