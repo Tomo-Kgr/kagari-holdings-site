@@ -1,0 +1,614 @@
+/* Shared editorial rhythm and components for the November 2026 revision. */
+.container,
+.page-hero-inner {
+  width: min(1080px, calc(100% - 64px));
+}
+.section {
+  padding: 160px 0;
+}
+.page-section {
+  padding: 80px 0 160px;
+}
+.page-hero {
+  padding: 100px 0 48px;
+  background: var(--paper);
+  color: var(--ink);
+}
+.page-hero h1 {
+  font-family: var(--serif-ja);
+  font-size: 40px;
+  line-height: 1.6;
+  max-width: 920px;
+}
+.page-hero p:not(.eyebrow) {
+  color: var(--ink-soft);
+  max-width: 680px;
+  font-size: 16px;
+  line-height: 1.9;
+}
+.page-hero .eyebrow,
+.contact-band .eyebrow {
+  color: var(--burgundy);
+}
+.section-tint,
+.section-white,
+.intro,
+.company,
+.contact,
+.succession,
+.targets {
+  background: var(--paper);
+}
+.business-summary {
+  background: var(--white);
+  border-block: 1px solid var(--line);
+}
+.two-column {
+  grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+  gap: 72px;
+}
+.prose {
+  max-width: 680px;
+}
+.section-heading p:not(.eyebrow),
+.prose p,
+.feature-card p,
+.page-list p,
+.timeline p,
+.member-bio p,
+.member-responsibilities ul,
+.policy-content,
+.service-table,
+.section-note,
+.selection-list,
+.people-list,
+.framed-note,
+.notice-list {
+  font-size: 16px;
+  line-height: 1.9;
+}
+.prose p,
+.business-pair p {
+  color: var(--ink);
+}
+.text-link {
+  font-family: var(--sans);
+  font-size: 16px;
+}
+.arrow-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  text-decoration: none;
+  border-bottom: 1px solid var(--burgundy);
+  padding-block: 10px;
+}
+.arrow-link::after {
+  content: "→";
+  font-size: 20px;
+  flex: 0 0 auto;
+}
+.arrow-link:hover {
+  border-bottom-color: #d95a1a;
+}
+.home-body {
+  padding-top: var(--header-height, 88px);
+}
+.hero {
+  min-height: 520px;
+  height: min(700px, calc(100svh - 160px));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brown);
+}
+.hero-content {
+  width: min(1080px, calc(100% - 64px));
+  text-align: left;
+  padding: 72px 0;
+}
+.hero h1 {
+  font-family: var(--serif-ja);
+  font-size: 72px;
+}
+.hero-lead {
+  font-family: var(--serif-ja);
+  font-size: 24px;
+  margin-top: 28px;
+}
+.hero-company {
+  font-size: 20px;
+  margin-top: 24px;
+}
+.hero-scrim {
+  background: rgba(42, 14, 10, 0.56);
+}
+.hero-image {
+  object-position: center 52%;
+}
+.photo-credit {
+  position: absolute;
+  z-index: 2;
+  bottom: 10px;
+  right: 24px;
+  max-width: calc(100% - 48px);
+  color: var(--white);
+  background: var(--brown);
+  padding: 4px 10px;
+  font-size: 12px;
+  margin: 0;
+}
+.photo-credit a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+}
+.name-origin {
+  border-top: 1px solid var(--line);
+  padding-top: 28px;
+  margin-top: 32px;
+}
+.name-origin h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+.business-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 48px;
+  margin-top: 48px;
+}
+.business-pair article {
+  border-top: 2px solid var(--ink);
+  padding-top: 24px;
+}
+.business-pair h3 {
+  font-size: 24px;
+  margin: 8px 0 20px;
+}
+.item-number,
+.industry-summary span {
+  font-family: var(--sans);
+  font-variant-numeric: lining-nums tabular-nums;
+  font-size: 22px;
+  color: var(--burgundy);
+}
+.philosophy-band,
+.representative-band {
+  background: var(--brown);
+  color: var(--white);
+}
+.philosophy-band .eyebrow,
+.representative-band .eyebrow,
+.philosophy-band .text-link,
+.representative-band .text-link {
+  color: var(--white);
+  border-color: #b6a69a;
+}
+.philosophy-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 80px;
+}
+.philosophy-item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 36px;
+  align-items: start;
+}
+.vertical-heading {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  height: 450px;
+  max-width: 160px;
+  font-size: 24px;
+  line-height: 1.9;
+}
+.philosophy-item > p {
+  margin: 40px 0 0;
+  color: #f1e8df;
+}
+.industry-summary {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid var(--line);
+}
+.industry-summary li {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  align-items: baseline;
+  gap: 20px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+}
+.industry-summary h3 {
+  font-size: 24px;
+}
+.representative-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+  gap: 72px;
+  align-items: center;
+}
+.representative-layout > img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 65% center;
+  filter: grayscale(1);
+}
+.representative-layout .prose {
+  margin-top: 28px;
+}
+.representative-layout .prose p {
+  color: var(--white);
+}
+.representative-name {
+  margin: 28px 0 0;
+  font-size: 14px;
+}
+.representative-name span {
+  margin-left: 16px;
+  font-family: var(--serif-ja);
+  font-size: 24px;
+}
+.news-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid var(--line);
+}
+.news-list li {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: 24px;
+  border-bottom: 1px solid var(--line);
+  padding: 26px 0;
+}
+.news-list time {
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+.news-list p {
+  margin: 0;
+}
+.news-section {
+  padding-bottom: 0;
+}
+.company-layout {
+  grid-template-columns: minmax(0, 1fr);
+}
+.company-table div {
+  grid-template-columns: 140px minmax(0, 1fr);
+}
+.company-contact {
+  padding-top: 96px;
+}
+.company-contact .section-heading {
+  max-width: 680px;
+}
+.contact-routes {
+  margin-top: 40px;
+  border-top: 1px solid var(--line);
+}
+.route-line {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) minmax(0, 1.3fr) 24px;
+  gap: 32px;
+  padding: 24px 0;
+  align-items: center;
+  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+}
+.route-line strong {
+  font-family: var(--serif-ja);
+  font-weight: 500;
+  font-size: 20px;
+}
+.route-line > span:not(.route-arrow) {
+  color: var(--ink-soft);
+  font-size: 15px;
+}
+.route-arrow {
+  color: var(--burgundy);
+  font-size: 24px;
+}
+.route-line:hover strong {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-color: #d95a1a;
+}
+.site-footer {
+  color: var(--ink);
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+}
+.footer-inner {
+  grid-template-columns: minmax(240px, 1fr) minmax(0, 1.3fr);
+  padding-block: 64px 40px;
+}
+.footer-inner > p {
+  grid-column: 1 / -1;
+  margin-top: 24px;
+}
+.footer-links {
+  color: var(--ink);
+  font-size: 14px;
+}
+.footer-links a {
+  text-decoration: none;
+}
+.footer-links a:hover {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+.page-list,
+.feature-grid {
+  gap: 32px;
+  border-left: 0;
+}
+.page-list li,
+.feature-card {
+  background: transparent;
+  border-right: 0;
+  padding: 28px 0;
+  min-height: auto;
+}
+.contact-band {
+  color: var(--ink);
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+}
+.outline-link {
+  color: var(--burgundy);
+  border-color: var(--burgundy);
+}
+.outline-link:hover {
+  background: var(--white);
+}
+.framed-note {
+  background: #fae8d0;
+  border: 0;
+}
+.member-portrait img {
+  filter: grayscale(1);
+}
+.promise-list {
+  list-style: none;
+  margin: 48px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px;
+}
+.promise-list li:last-child {
+  grid-column: 1 / -1;
+  max-width: 680px;
+}
+.promise-title {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  border: 1px solid var(--burgundy);
+  min-height: 88px;
+}
+.promise-title span {
+  flex: 0 0 30px;
+  font-family: var(--serif-ja);
+  font-size: 26px;
+  color: var(--burgundy);
+}
+.promise-title h3 {
+  font-size: 21px;
+}
+.promise-list p {
+  margin: 20px 0 0;
+}
+.philosophy-detail {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 80px;
+}
+.philosophy-detail + .philosophy-detail {
+  margin-top: 96px;
+  border-top: 1px solid var(--line);
+  padding-top: 96px;
+}
+.philosophy-detail .vertical-heading {
+  height: 480px;
+  font-size: 26px;
+  max-width: 200px;
+}
+.philosophy-detail .prose {
+  max-width: 680px;
+}
+.faq {
+  margin-top: 80px;
+}
+.faq h2 {
+  margin-bottom: 32px;
+}
+.faq details {
+  padding: 24px 0;
+  border-top: 1px solid var(--line);
+}
+.faq details:last-child {
+  border-bottom: 1px solid var(--line);
+}
+.faq summary {
+  font-family: var(--serif-ja);
+  font-size: 20px;
+  cursor: pointer;
+  padding-block: 4px;
+}
+.faq details p {
+  max-width: 680px;
+  margin-bottom: 0;
+}
+.investment-facts {
+  margin-top: 40px;
+}
+.message-full {
+  max-width: 680px;
+  margin-inline: auto;
+}
+.message-full h2 {
+  margin-bottom: 32px;
+}
+@media (max-width: 980px) {
+  .two-column {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .philosophy-pair {
+    gap: 40px;
+  }
+  .philosophy-item {
+    grid-template-columns: 1fr;
+  }
+  .philosophy-item > p {
+    margin-top: 8px;
+  }
+  .representative-layout {
+    gap: 40px;
+  }
+  .footer-inner {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 760px) {
+  .container,
+  .page-hero-inner,
+  .hero-content {
+    width: calc(100% - 40px);
+  }
+  .section {
+    padding-block: 96px;
+  }
+  .page-section {
+    padding: 40px 0 96px;
+  }
+  .page-hero {
+    padding: 64px 0 32px;
+  }
+  h2,
+  .section-addition.prose h2,
+  .contact-band h2 {
+    font-size: 26px;
+  }
+  .page-hero h1 {
+    font-size: 30px;
+  }
+  .home-body {
+    padding-top: var(--header-height, 80px);
+  }
+  .hero {
+    height: calc(100svh - 144px);
+    min-height: 440px;
+    max-height: 640px;
+  }
+  .hero h1 {
+    font-size: 40px;
+  }
+  .hero-lead {
+    font-size: 18px;
+  }
+  .hero-company {
+    font-size: 18px;
+  }
+  .photo-credit {
+    right: 12px;
+    max-width: calc(100% - 24px);
+  }
+  .business-pair,
+  .philosophy-pair,
+  .promise-list {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .business-pair h3,
+  .industry-summary h3 {
+    font-size: 22px;
+  }
+  .philosophy-item {
+    display: block;
+  }
+  .vertical-heading,
+  .philosophy-detail .vertical-heading {
+    writing-mode: horizontal-tb;
+    height: auto;
+    max-width: none;
+    font-size: 26px;
+    line-height: 1.8;
+  }
+  .philosophy-item > p {
+    margin-top: 24px;
+  }
+  .philosophy-item + .philosophy-item {
+    padding-top: 40px;
+    border-top: 1px solid #71534b;
+  }
+  .representative-layout {
+    grid-template-columns: 1fr;
+  }
+  .representative-layout > img {
+    width: min(100%, 360px);
+    aspect-ratio: 4 / 3;
+    object-position: center 45%;
+  }
+  .company-table div {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .company-contact {
+    padding-top: 72px;
+  }
+  .route-line {
+    grid-template-columns: minmax(0, 1fr) 24px;
+    gap: 8px 20px;
+  }
+  .route-line > span:not(.route-arrow) {
+    grid-column: 1;
+  }
+  .route-arrow {
+    grid-column: 2;
+    grid-row: 1 / 3;
+  }
+  .news-list li {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .news-section {
+    padding-bottom: 0;
+  }
+  .promise-title {
+    padding: 16px;
+    gap: 12px;
+  }
+  .promise-title h3 {
+    font-size: 20px;
+  }
+  .philosophy-detail {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .philosophy-detail + .philosophy-detail {
+    padding-top: 64px;
+    margin-top: 64px;
+  }
+}
+@media (max-width: 1280px) {
+  html:not(.js) .home-body {
+    padding-top: 0;
+  }
+  .site-nav {
+    transform: none;
+    transition:
+      opacity 180ms ease,
+      visibility 180ms ease;
+  }
+}

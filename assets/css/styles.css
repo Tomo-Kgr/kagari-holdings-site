@@ -1,18 +1,18 @@
 :root {
   --ink: #17110d;
-  --ink-soft: #45372e;
+  --ink-soft: #5e5249;
   --paper: #f8f4ec;
   --paper-deep: #eee5d6;
   --white: #fffdf8;
-  --line: rgba(23, 17, 13, 0.16);
-  --burgundy: #4b1118;
-  --gold: #765a27;
+  --line: #ddd4c6;
+  --burgundy: #8c2a18;
+  --gold: #8c2a18;
   --gold-light: #dec58e;
-  --brown: #2a1b13;
+  --brown: #2a0e0a;
   --shadow: 0 24px 70px rgba(23, 17, 13, 0.12);
   --serif-ja: "Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", serif;
   --serif-en: "Cormorant Garamond", Georgia, serif;
-  --sans: "Yu Gothic", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  --sans: "Noto Sans JP", "Yu Gothic", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
 }
 
 *,
@@ -30,7 +30,7 @@ body {
   margin: 0;
   color: var(--ink);
   background: var(--paper);
-  font-family: var(--serif-ja);
+  font-family: var(--sans);
   line-height: 1.9;
   font-size: 1rem;
   text-rendering: optimizeLegibility;
@@ -108,10 +108,10 @@ a, button {
   gap: 1.5rem;
   min-height: 88px;
   padding: 1rem clamp(1.25rem, 4vw, 3.5rem);
-  color: var(--white);
-  background: rgba(23, 17, 13, 0.82);
+  color: var(--ink);
+  background: var(--paper);
   transition: background-color 220ms ease, color 220ms ease, border-color 220ms ease;
-  border-bottom: 1px solid rgba(255, 253, 248, 0.16);
+  border-bottom: 1px solid var(--line);
 }
 
 .site-header.is-scrolled,
@@ -157,6 +157,7 @@ a, button {
 }
 
 .brand-ja {
+  font-family: var(--serif-ja);
   font-size: 1rem;
   line-height: 1.35;
 }
@@ -271,8 +272,8 @@ a, button {
   margin: 0 0 1rem;
   color: var(--gold);
   font-family: var(--serif-en), var(--serif-ja);
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 0.8125rem;
+  font-weight: 500;
   line-height: 1.4;
   text-transform: uppercase;
 }
@@ -347,16 +348,18 @@ p {
 }
 
 h2 {
+  font-family: var(--serif-ja);
   margin: 0;
-  font-size: 2.5rem;
+  font-size: 2.25rem;
   font-weight: 500;
   line-height: 1.55;
 }
 
 h3 {
+  font-family: var(--serif-ja);
   margin: 0;
   font-size: 1.375rem;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.55;
 }
 
@@ -1254,9 +1257,7 @@ h1, li, dd {
 }
 
 .will-reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 700ms ease, transform 700ms ease;
+  opacity: 1;
 }
 
 .will-reveal.is-visible {

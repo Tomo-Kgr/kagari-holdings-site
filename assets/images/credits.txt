@@ -1,0 +1,14 @@
+narai-840.webp, narai-1680.webp, narai-840.avif, narai-1680.avif
+Photographer: Joris Beugels
+Place: Narai-juku, Shiojiri, Nagano, Japan
+Source: https://unsplash.com/photos/old-japanese-wooden-houses-line-a-quiet-street-yRGrPNnMKB0
+License: Unsplash License, https://unsplash.com/license
+Verified: 2026-11-08
+Real location photograph; not a Kagari property or portfolio company.
+Downloaded in WebP and AVIF at responsive widths. No content edits.
+
+eiji-nagakura.webp, kagari-mark-192.png
+User-provided Kagari pitch deck; previously authorized for the website.
+
+kagari-og-20261108.png
+Rendered from the website's own typography and logo.
