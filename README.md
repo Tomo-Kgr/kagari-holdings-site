@@ -48,6 +48,7 @@ The contact pages open the visitor's email application; they do not submit a for
 - `factory-*.webp`: legacy generated image, no longer displayed on current pages.
 - `kagari-mark.png`: the original calligraphic mark from the company-supplied presentation cover. The optimized `kagari-mark-192.png` is used as an alpha mask to match light and dark headers; the original also supplies `favicon.png`.
 - `eiji-nagakura.webp`: the representative's real photograph extracted from the company-supplied presentation, resized and compressed.
+- `industry-*.webp`: real metalworking, agriculture and fishery photographs displayed in the home page's business section. Photographer/source/license details are in `assets/images/credits.txt`. These are illustrative industry photographs, not Kagari portfolio companies. Responsive sizes and lazy loading limit download cost.
 - `kagaribi-*.webp`: legacy generated shrine scene, no longer displayed on current pages.
 
 Generation direction for the kagari-bi image: photorealistic, wide 16:9 editorial photograph of a fictional modest Shinto courtyard at blue hour; a traditional weathered iron fire basket on the right third, natural small gold flames and glowing wood; cedar trees, shrine eaves and stone visible; quiet darker space on the left for copy. Dignified documentary character, subtle grain. No people, text, logos, watermark, dramatic sparks, heavy smoke, bokeh or oversaturated orange.

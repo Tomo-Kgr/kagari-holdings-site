@@ -3,7 +3,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
-const version = "20261108-r1";
+const version = "20261109-r1";
 let home = await fs.readFile(path.join(root, "index.html"), "utf8");
 const philosophy = await fs.readFile(
   path.join(root, "philosophy/index.html"),

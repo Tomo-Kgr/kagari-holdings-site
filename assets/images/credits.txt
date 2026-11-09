@@ -9,6 +9,35 @@ Downloaded in WebP and AVIF at responsive widths. No content edits.
 
 eiji-nagakura.webp, kagari-mark-192.png
 User-provided Kagari pitch deck; previously authorized for the website.
+Portrait displayed in its original color from 2026-11-09; no content edits.
+
+industry-manufacturing-480.webp, industry-manufacturing-840.webp
+Photographer: gumigasuki
+Subject: Metal spinning in a small factory (precise location not specified by source).
+Source: https://pixabay.com/photos/spinning-small-factory-craftsman-645620/
+Original: https://cdn.pixabay.com/photo/2015/02/23/00/07/metal-spinning-645620_1280.jpg
+License: Pixabay Content License, https://pixabay.com/service/license-summary/
+Verified: 2026-11-09
+
+industry-agriculture-480.webp, industry-agriculture-840.webp
+Photographer: Dennis Peterson
+Place: Yamagata, Japan; rice ready for harvest.
+Source: https://unsplash.com/photos/a-large-field-of-grass-2vi9sNl92cU
+Original: https://images.unsplash.com/photo-1664196256063-75afe301821d
+License: Unsplash License, https://unsplash.com/license
+Verified: 2026-11-09
+
+industry-fishery-480.webp, industry-fishery-840.webp
+Photographer: W Luna
+Place: Japan; fishing boats in a harbor (precise port not specified by source).
+Source: https://www.pexels.com/photo/fishing-boats-moored-in-a-port-10304680/
+Original: https://images.pexels.com/photos/10304680/pexels-photo-10304680.jpeg
+License: Pexels License, https://www.pexels.com/license/
+Verified: 2026-11-09
+
+The industry photographs illustrate their respective industries, not Kagari facilities,
+employees, investment targets, portfolio companies or endorsements. Resized and
+compressed as WebP without content edits. On-page photographer attribution retained.
 
 kagari-og-20261108.png
 Rendered from the website's own typography and logo.
