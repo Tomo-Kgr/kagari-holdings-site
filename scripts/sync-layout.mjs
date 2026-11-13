@@ -3,24 +3,9 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
-const version = "20261109-r1";
+const version = "20261113-r1";
 let home = await fs.readFile(path.join(root, "index.html"), "utf8");
-const philosophy = await fs.readFile(
-  path.join(root, "philosophy/index.html"),
-  "utf8",
-);
-const promises = philosophy.match(
-  /    <section class="section promises-section"[\s\S]*?<\/section>/,
-)[0];
-home = home.replace(
-  "    <!-- Approved promises will be inserted here after confirmation. -->",
-  promises,
-);
-home = home.replace(
-  /<section class="section promises-section"[\s\S]*?<\/section>/,
-  promises.trimStart(),
-);
-await fs.writeFile(path.join(root, "index.html"), home);
+// The home page summarizes the principles; the philosophy page carries the full text.
 const header = home.match(/<header class="site-header"[\s\S]*?<\/header>/)[0];
 const footer = home.match(/<footer class="site-footer"[\s\S]*?<\/footer>/)[0];
 const organization = {
@@ -60,6 +45,23 @@ const escape = (value) =>
 for (const file of files) {
   let html = await fs.readFile(file, "utf8");
   if (html.includes('http-equiv="refresh"')) continue;
+  if (file === path.join(root, "philosophy/index.html")) {
+    for (const part of ["slides", "controls"]) {
+      const pattern = new RegExp(
+        `<!-- carousel-${part}:start -->[\\s\\S]*?<!-- carousel-${part}:end -->`,
+      );
+      html = html.replace(pattern, home.match(pattern)[0]);
+    }
+  }
+  if (file === path.join(root, "investment-policy/index.html")) {
+    const pattern =
+      /<!-- industry-features:start -->[\s\S]*?<!-- industry-features:end -->/;
+    const feature = home
+      .match(pattern)[0]
+      .replace(/<(\/?)h3(\s[^>]*|)>/g, "<$1h2$2>")
+      .replace(/<(\/?)h4>/g, "<$1h3>");
+    html = html.replace(pattern, feature);
+  }
   html = html
     .replace(/<header class="site-header"[\s\S]*?<\/header>/, header)
     .replace(/<footer class="site-footer"[\s\S]*?<\/footer>/, footer)

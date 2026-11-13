@@ -11,7 +11,7 @@ Static corporate website for Kagari Holdings Co., Ltd.
 - `assets/css/fonts.css`, `assets/fonts/`: self-hosted fonts and their SIL Open Font Licenses
 - `assets/images/`: optimized photographs and the supplied calligraphic brand mark
 - `team/index.html`: representative profile and finance operations
-- `philosophy/index.html`: mission, vision and approved promises
+- `philosophy/index.html`: mission, vision and the five corporate principles approved in the November 13 MVV; the home page summarizes these principles. Internal behavioral guidelines are not public.
 - `investment-policy/index.html`: approved investment criteria; the old `investment-themes` URL permanently redirects here
 - `news/index.html`: dated, factual company announcements
 - `consulting/index.html`, `contact/consulting/index.html`: consulting services and email contact
@@ -48,7 +48,9 @@ The contact pages open the visitor's email application; they do not submit a for
 - `factory-*.webp`: legacy generated image, no longer displayed on current pages.
 - `kagari-mark.png`: the original calligraphic mark from the company-supplied presentation cover. The optimized `kagari-mark-192.png` is used as an alpha mask to match light and dark headers; the original also supplies `favicon.png`.
 - `eiji-nagakura.webp`: the representative's real photograph extracted from the company-supplied presentation, resized and compressed.
-- `industry-*.webp`: real metalworking, agriculture and fishery photographs displayed in the home page's business section. Photographer/source/license details are in `assets/images/credits.txt`. These are illustrative industry photographs, not Kagari portfolio companies. Responsive sizes and lazy loading limit download cost.
+- `hero-*.webp`: real metalworking, agriculture and fishery photographs in the home hero and philosophy Mission background, alongside Narai-juku. The next image is decoded before transition; playback pauses on hover, keyboard interaction and when offscreen. Reduced-motion and data-saver preferences start paused. Photographer/source/license details are in `assets/images/credits.txt`; these are illustrative industry photographs, not Kagari portfolio companies.
+- `industry-*.webp`: responsive agriculture, metalworking and water-treatment images accompanying sector explanations. Edit the `industry-features` region on the home page and run `sync-layout.mjs` to update the existing investment-policy page; no separate sector routes are used.
+- `icon-play.svg`, `icon-pause.svg`: Lucide icons; ISC license retained in `assets/images/lucide-LICENSE.txt`.
 - `kagaribi-*.webp`: legacy generated shrine scene, no longer displayed on current pages.
 
 Generation direction for the kagari-bi image: photorealistic, wide 16:9 editorial photograph of a fictional modest Shinto courtyard at blue hour; a traditional weathered iron fire basket on the right third, natural small gold flames and glowing wood; cedar trees, shrine eaves and stone visible; quiet darker space on the left for copy. Dignified documentary character, subtle grain. No people, text, logos, watermark, dramatic sparks, heavy smoke, bokeh or oversaturated orange.

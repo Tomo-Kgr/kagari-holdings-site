@@ -39,5 +39,26 @@ The industry photographs illustrate their respective industries, not Kagari faci
 employees, investment targets, portfolio companies or endorsements. Resized and
 compressed as WebP without content edits. On-page photographer attribution retained.
 
+2026-11-13 hero carousel variants
+hero-manufacturing-840.webp, hero-manufacturing-1280.webp: same gumigasuki original above.
+hero-agriculture-840.webp, hero-agriculture-1680.webp: same Dennis Peterson original above.
+hero-fishery-840.webp, hero-fishery-1680.webp: same W Luna original above.
+Responsive WebP compression only. Full image is retained; CSS crops it to the viewport.
+The original industry gallery is no longer displayed separately.
+
+icon-play.svg, icon-pause.svg
+Source: https://github.com/lucide-icons/lucide/tree/main/icons
+License: ISC; full notice retained in lucide-LICENSE.txt.
+Downloaded: 2026-11-13
+
+industry-infrastructure-480.webp, industry-infrastructure-840.webp
+Photographer: Alexey Demidov
+Subject: Water treatment tanks and blue piping; illustrative facility, not a Kagari property.
+Source: https://www.pexels.com/photo/purifiers-at-a-water-treatment-plant-12726229/
+Original: https://images.pexels.com/photos/12726229/pexels-photo-12726229.jpeg
+License: Pexels License, https://www.pexels.com/license/
+Verified: 2026-11-13
+Resized and compressed without content edits; no location claim.
+
 kagari-og-20261108.png
 Rendered from the website's own typography and logo.

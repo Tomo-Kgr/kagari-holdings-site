@@ -32,13 +32,13 @@
     <link
       rel="preload"
       as="font"
-      href="/assets/fonts/font-f10ec1c7d1b6a499.woff2"
+      href="/assets/fonts/font-9ffc3e905916a6e3.woff2"
       type="font/woff2"
       crossorigin
     />
-    <link rel="stylesheet" href="/assets/css/fonts.css?v=20261109-r1" />
-    <link rel="stylesheet" href="/assets/css/styles.css?v=20261109-r1" />
-    <link rel="stylesheet" href="/assets/css/editorial.css?v=20261109-r1" />
+    <link rel="stylesheet" href="/assets/css/fonts.css?v=20261113-r1" />
+    <link rel="stylesheet" href="/assets/css/styles.css?v=20261113-r1" />
+    <link rel="stylesheet" href="/assets/css/editorial.css?v=20261113-r1" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="ja_JP" />
     <meta property="og:site_name" content="篝ホールディングス株式会社" />
@@ -123,43 +123,202 @@
       </nav>
     </header>
     <main id="main">
-      <section class="hero" id="top" aria-labelledby="hero-title">
-        <picture>
-          <source
-            type="image/avif"
-            srcset="
-              /assets/images/narai-840.avif   840w,
-              /assets/images/narai-1680.avif 1680w
-            "
-            sizes="100vw"
-          />
-          <img
-            class="hero-image"
-            src="/assets/images/narai-1680.webp"
-            srcset="
-              /assets/images/narai-840.webp   840w,
-              /assets/images/narai-1680.webp 1680w
-            "
-            sizes="100vw"
-            width="1680"
-            height="1260"
-            alt="長野県・奈良井宿の木造の町並みと山並み"
-            fetchpriority="high"
-          />
-        </picture>
+      <section
+        class="hero"
+        id="top"
+        aria-labelledby="hero-title"
+        aria-roledescription="カルーセル"
+        data-hero-carousel
+      >
+        <!-- carousel-slides:start -->
+        <div
+          class="hero-slide is-active"
+          data-hero-slide
+          role="group"
+          aria-roledescription="スライド"
+          aria-label="1 / 4 日本の町並み"
+          data-caption="長野県 奈良井宿"
+          data-credit="Joris Beugels"
+          data-source="https://unsplash.com/photos/old-japanese-wooden-houses-line-a-quiet-street-yRGrPNnMKB0"
+        >
+          <picture>
+            <source
+              type="image/avif"
+              srcset="
+                /assets/images/narai-840.avif   840w,
+                /assets/images/narai-1680.avif 1680w
+              "
+              sizes="100vw"
+            />
+            <img
+              class="hero-image"
+              src="/assets/images/narai-1680.webp"
+              srcset="
+                /assets/images/narai-840.webp   840w,
+                /assets/images/narai-1680.webp 1680w
+              "
+              sizes="100vw"
+              width="1680"
+              height="1260"
+              alt="長野県・奈良井宿の木造の町並みと山並み"
+              fetchpriority="high"
+            />
+          </picture>
+        </div>
+        <div
+          class="hero-slide"
+          data-hero-slide
+          role="group"
+          aria-roledescription="スライド"
+          aria-label="2 / 4 ものづくり"
+          aria-hidden="true"
+          data-caption="ものづくり"
+          data-credit="gumigasuki / Pixabay"
+          data-source="https://pixabay.com/photos/spinning-small-factory-craftsman-645620/"
+        >
+          <template>
+            <img
+              class="hero-image"
+              src="/assets/images/hero-manufacturing-1280.webp"
+              srcset="
+                /assets/images/hero-manufacturing-840.webp   840w,
+                /assets/images/hero-manufacturing-1280.webp 1280w
+              "
+              sizes="100vw"
+              width="1280"
+              height="853"
+              alt="町工場で金属をへら絞り加工する職人の手元"
+              decoding="async"
+              fetchpriority="low"
+            />
+          </template>
+        </div>
+        <div
+          class="hero-slide"
+          data-hero-slide
+          role="group"
+          aria-roledescription="スライド"
+          aria-label="3 / 4 農業"
+          aria-hidden="true"
+          data-caption="農業 / 山形の田園"
+          data-credit="Dennis Peterson / Unsplash"
+          data-source="https://unsplash.com/photos/a-large-field-of-grass-2vi9sNl92cU"
+        >
+          <template>
+            <img
+              class="hero-image"
+              src="/assets/images/hero-agriculture-1680.webp"
+              srcset="
+                /assets/images/hero-agriculture-840.webp   840w,
+                /assets/images/hero-agriculture-1680.webp 1680w
+              "
+              sizes="100vw"
+              width="1680"
+              height="1122"
+              alt="山形県で収穫期を迎えた稲が広がる田園風景"
+              decoding="async"
+              fetchpriority="low"
+            />
+          </template>
+        </div>
+        <div
+          class="hero-slide"
+          data-hero-slide
+          role="group"
+          aria-roledescription="スライド"
+          aria-label="4 / 4 漁業"
+          aria-hidden="true"
+          data-caption="漁業 / 日本の漁港"
+          data-credit="W Luna / Pexels"
+          data-source="https://www.pexels.com/photo/fishing-boats-moored-in-a-port-10304680/"
+        >
+          <template>
+            <img
+              class="hero-image"
+              src="/assets/images/hero-fishery-1680.webp"
+              srcset="
+                /assets/images/hero-fishery-840.webp   840w,
+                /assets/images/hero-fishery-1680.webp 1680w
+              "
+              sizes="100vw"
+              width="1680"
+              height="1120"
+              alt="日本の漁港に並んで停泊する漁船"
+              decoding="async"
+              fetchpriority="low"
+            />
+          </template>
+        </div>
+        <!-- carousel-slides:end -->
         <div class="hero-scrim" aria-hidden="true"></div>
         <div class="hero-content">
           <h1 id="hero-title">灯を継ぐ。</h1>
           <p class="hero-lead">日本の中小企業を、次の世代へ。</p>
           <p class="hero-company">Kagari Holdings Co., Ltd.</p>
         </div>
-        <p class="photo-credit">
-          長野県 奈良井宿 / Photo:
-          <a
-            href="https://unsplash.com/photos/old-japanese-wooden-houses-line-a-quiet-street-yRGrPNnMKB0"
-            >Joris Beugels</a
-          >
-        </p>
+        <!-- carousel-controls:start -->
+        <div class="hero-footer">
+          <div class="hero-controls" hidden>
+            <div class="hero-pagination" role="group" aria-label="写真を選ぶ">
+              <button
+                class="hero-dot"
+                type="button"
+                data-hero-select="0"
+                aria-label="日本の町並みの写真を表示"
+                aria-pressed="true"
+                title="日本の町並み"
+              ></button>
+              <button
+                class="hero-dot"
+                type="button"
+                data-hero-select="1"
+                aria-label="ものづくりの写真を表示"
+                aria-pressed="false"
+                title="ものづくり"
+              ></button>
+              <button
+                class="hero-dot"
+                type="button"
+                data-hero-select="2"
+                aria-label="農業の写真を表示"
+                aria-pressed="false"
+                title="農業"
+              ></button>
+              <button
+                class="hero-dot"
+                type="button"
+                data-hero-select="3"
+                aria-label="漁業の写真を表示"
+                aria-pressed="false"
+                title="漁業"
+              ></button>
+            </div>
+            <button
+              class="hero-playback"
+              type="button"
+              data-hero-playback
+              aria-label="スライドショーを一時停止"
+              title="スライドショーを一時停止"
+            >
+              <span class="hero-playback-icon" aria-hidden="true"></span>
+            </button>
+          </div>
+          <p class="photo-credit">
+            <span data-hero-caption>長野県 奈良井宿</span
+            ><span class="photo-credit-source"
+              >Photo:
+              <a
+                data-hero-credit
+                href="https://unsplash.com/photos/old-japanese-wooden-houses-line-a-quiet-street-yRGrPNnMKB0"
+                >Joris Beugels</a
+              ></span
+            >
+            <span class="photo-context"
+              >事業イメージ（当社の投資先を示すものではありません）</span
+            >
+          </p>
+        </div>
+        <!-- carousel-controls:end -->
       </section>
       <section class="section intro" id="about" aria-labelledby="about-title">
         <div class="container two-column">
@@ -217,87 +376,6 @@
               >
             </article>
           </div>
-          <div
-            class="industry-gallery"
-            role="group"
-            aria-label="ものづくりと一次産業の風景"
-          >
-            <figure>
-              <img
-                src="/assets/images/industry-manufacturing-840.webp"
-                srcset="
-                  /assets/images/industry-manufacturing-480.webp 480w,
-                  /assets/images/industry-manufacturing-840.webp 840w
-                "
-                sizes="(max-width: 760px) calc(100vw - 40px), (max-width: 1144px) calc((100vw - 112px) / 3), 344px"
-                width="840"
-                height="560"
-                loading="lazy"
-                decoding="async"
-                alt="町工場で金属をへら絞り加工する職人の手元"
-              />
-              <figcaption>
-                <strong>ものづくり</strong>
-                <span>町工場の金属加工</span>
-                <a
-                  href="https://pixabay.com/photos/spinning-small-factory-craftsman-645620/"
-                  rel="external"
-                  >Photo: gumigasuki / Pixabay</a
-                >
-              </figcaption>
-            </figure>
-            <figure>
-              <img
-                src="/assets/images/industry-agriculture-840.webp"
-                srcset="
-                  /assets/images/industry-agriculture-480.webp 480w,
-                  /assets/images/industry-agriculture-840.webp 840w
-                "
-                sizes="(max-width: 760px) calc(100vw - 40px), (max-width: 1144px) calc((100vw - 112px) / 3), 344px"
-                width="840"
-                height="561"
-                loading="lazy"
-                decoding="async"
-                alt="山形県で収穫期を迎えた稲が広がる田園風景"
-              />
-              <figcaption>
-                <strong>農業</strong>
-                <span>山形の田園</span>
-                <a
-                  href="https://unsplash.com/photos/a-large-field-of-grass-2vi9sNl92cU"
-                  rel="external"
-                  >Photo: Dennis Peterson / Unsplash</a
-                >
-              </figcaption>
-            </figure>
-            <figure>
-              <img
-                src="/assets/images/industry-fishery-840.webp"
-                srcset="
-                  /assets/images/industry-fishery-480.webp 480w,
-                  /assets/images/industry-fishery-840.webp 840w
-                "
-                sizes="(max-width: 760px) calc(100vw - 40px), (max-width: 1144px) calc((100vw - 112px) / 3), 344px"
-                width="840"
-                height="560"
-                loading="lazy"
-                decoding="async"
-                alt="日本の漁港に並んで停泊する漁船"
-              />
-              <figcaption>
-                <strong>漁業</strong>
-                <span>港に息づく営み</span>
-                <a
-                  href="https://www.pexels.com/photo/fishing-boats-moored-in-a-port-10304680/"
-                  rel="external"
-                  >Photo: W Luna / Pexels</a
-                >
-              </figcaption>
-            </figure>
-          </div>
-          <p class="industry-gallery-note">
-            写真は各産業の風景を紹介するものであり、当社グループの事業所・投資先を示すものではありません。
-          </p>
         </div>
       </section>
       <section
@@ -325,7 +403,7 @@
               </h2>
             </div>
             <p>
-              一社の承継から始まり、その企業が属する産業全体の変革へ。しなっても折れない竹のように、変化に強い産業の土台を、事業承継を通じて築いていきます。
+              一社の承継から、産業全体の変革へ。志を同じくする企業が集い、資本・人材・テクノロジー・経営基盤を共に活かし、変化に強い産業の土台を築きます。
             </p>
           </article>
         </div>
@@ -333,59 +411,66 @@
           <a class="text-link arrow-link" href="/philosophy/">理念を見る</a>
         </div>
       </section>
-      <section class="section promises-section" id="promises">
+      <section
+        class="section principles-section"
+        id="principles"
+        aria-labelledby="principles-title"
+      >
         <div class="container">
-          <div class="section-heading">
+          <div class="section-heading" id="promises">
             <p class="eyebrow">私たちが大切にすること</p>
-            <h2>篝の約束</h2>
+            <h2 id="principles-title">企業理念</h2>
           </div>
-          <ol class="promise-list">
+          <ol class="principles-summary-list">
             <li>
-              <div class="promise-title">
+              <div class="principle-title">
                 <span aria-hidden="true">一</span>
-                <h3>正しいかどうかで判断します</h3>
+                <h3>日本を強く、豊かに</h3>
               </div>
-              <p>
-                条件の有利不利より先に、人として正しいかどうかを考えます。判断の理由は、関わる方に説明できる言葉で残します。
-              </p>
+              <p>当社は、日本を強く、豊かにするために存在します。</p>
             </li>
             <li>
-              <div class="promise-title">
+              <div class="principle-title">
                 <span aria-hidden="true">二</span>
-                <h3>できない約束はいたしません</h3>
+                <h3>事業承継の当事者として</h3>
               </div>
               <p>
-                雇用、社名、取引先について、お譲りいただく前に、お約束できることとできないことを分けてお伝えします。お約束したことは必ず守ります。
+                投資判断と現場の経営の両方に責任を持ち、オーナーが築いた事業と、そこで働く人々の営みを次の世代へ引き継ぎます。
               </p>
             </li>
             <li>
-              <div class="promise-title">
+              <div class="principle-title">
                 <span aria-hidden="true">三</span>
-                <h3>現場と数字の両方から学びます</h3>
+                <h3>実行力と誠実さを磨く</h3>
               </div>
               <p>
-                会社の強みは、長く働いてこられた社員の方の中にあります。現場でお話を伺い、数字と照らし合わせながら、一つずつ改善します。
+                スピードと品質、何より誠実さを大切にし、託された会社の中長期的な企業価値の向上に取り組みます。
               </p>
             </li>
             <li>
-              <div class="promise-title">
+              <div class="principle-title">
                 <span aria-hidden="true">四</span>
-                <h3>身の丈を守って経営します</h3>
+                <h3>社員の成長と豊かさを支える</h3>
               </div>
               <p>
-                返済の見通しが立たない借入や、背伸びをした投資はしません。一社一社を、無理なく長く続けられる財務で支えます。
+                挑戦の機会と成果に対する正当な還元を通じて、社員の成長、物心両面の豊かさ、家族の幸せを支えます。
               </p>
             </li>
             <li>
-              <div class="promise-title">
+              <div class="principle-title">
                 <span aria-hidden="true">五</span>
-                <h3>働く方の暮らしを大切にします</h3>
+                <h3>信用と財務、人材を土台に</h3>
               </div>
               <p>
-                承継後も、社員の皆さまが安心して働き続けられることを第一に考えます。物心両面で報われる会社を、社員の皆さまとともにつくります。
+                機密保持・法令遵守・利益相反の排除、堅実な財務と資本の強化、高い収益性を土台に、世界に認められる投資会社を目指します。
               </p>
             </li>
           </ol>
+          <div class="section-link">
+            <a class="text-link arrow-link" href="/philosophy/#principles"
+              >企業理念の全文を見る</a
+            >
+          </div>
         </div>
       </section>
       <section
@@ -393,7 +478,7 @@
         id="investment"
         aria-labelledby="investment-title"
       >
-        <div class="container two-column">
+        <div class="container">
           <div class="section-heading reveal">
             <p class="eyebrow">投資方針</p>
             <h2 id="investment-title">三つの産業に絞って取り組む。</h2>
@@ -401,20 +486,159 @@
               >投資方針を見る</a
             >
           </div>
-          <ul class="industry-summary reveal">
-            <li>
-              <span>01</span>
-              <h3>食・観光</h3>
-            </li>
-            <li>
-              <span>02</span>
-              <h3>中小製造</h3>
-            </li>
-            <li>
-              <span>03</span>
-              <h3>生活・環境インフラ</h3>
-            </li>
-          </ul>
+          <!-- industry-features:start -->
+          <div class="industry-features">
+            <article class="industry-feature" id="industry-food">
+              <figure>
+                <img
+                  src="/assets/images/industry-agriculture-840.webp"
+                  srcset="
+                    /assets/images/industry-agriculture-480.webp 480w,
+                    /assets/images/industry-agriculture-840.webp 840w
+                  "
+                  sizes="(max-width: 760px) calc(100vw - 40px), 420px"
+                  width="840"
+                  height="561"
+                  loading="lazy"
+                  decoding="async"
+                  alt="山形県の収穫期の田園風景"
+                />
+                <figcaption>
+                  山形の田園 /
+                  <a
+                    href="https://unsplash.com/photos/a-large-field-of-grass-2vi9sNl92cU"
+                    >Photo: Dennis Peterson</a
+                  >
+                </figcaption>
+              </figure>
+              <div class="industry-copy">
+                <p class="item-number">01</p>
+                <h3 class="industry-title">食・観光</h3>
+                <p class="industry-scope">
+                  農水産・食品・地域商社・宿泊・観光施設・体験・レジャー
+                </p>
+                <h4>市場・商習慣の特徴</h4>
+                <p>
+                  生産者・加工業者・宿泊施設などの連携が、地域ならではの食と体験を支えます。観光では季節や曜日で需要が変わるため、繁閑に応じた販売・予約・人員配置が重要になります。
+                </p>
+                <h4>篝が着目する理由</h4>
+                <p>
+                  地域の食文化や自然、長年培われた味と技は、簡単には移せない資産です。その個性を守りながら、販路の整備や業務の効率化、人材育成に取り組むことで、地域の魅力を持続する事業へ育てられると考えています。
+                </p>
+              </div>
+            </article>
+            <article class="industry-feature" id="industry-manufacturing">
+              <figure>
+                <img
+                  src="/assets/images/industry-manufacturing-840.webp"
+                  srcset="
+                    /assets/images/industry-manufacturing-480.webp 480w,
+                    /assets/images/industry-manufacturing-840.webp 840w
+                  "
+                  sizes="(max-width: 760px) calc(100vw - 40px), 420px"
+                  width="840"
+                  height="560"
+                  loading="lazy"
+                  decoding="async"
+                  alt="町工場で金属をへら絞り加工する職人"
+                />
+                <figcaption>
+                  町工場の金属加工 /
+                  <a
+                    href="https://pixabay.com/photos/spinning-small-factory-craftsman-645620/"
+                    >Photo: gumigasuki</a
+                  >
+                </figcaption>
+              </figure>
+              <div class="industry-copy">
+                <p class="item-number">02</p>
+                <h3 class="industry-title">中小製造</h3>
+                <p class="industry-scope">
+                  金型・切削・板金・表面処理・熱処理・精密加工・特殊部素材
+                </p>
+                <h4>市場・商習慣の特徴</h4>
+                <p>
+                  多品種少量や顧客ごとの仕様への対応では、設備だけでなく、熟練者の技能・工程設計・品質管理が価値を支えます。技能を次の担い手へ伝えることと、見積・原価・納期管理を属人化させない仕組みづくりが重要です。
+                </p>
+                <h4>篝が着目する理由</h4>
+                <p>
+                  長く磨いてきた加工技術と顧客との信頼関係は、短期間ではつくれません。現場の強みを受け継ぎ、管理会計、採用、デジタル化を経営面から支えることで、「つくる力」を次の成長につなげられると考えています。
+                </p>
+              </div>
+            </article>
+            <article class="industry-feature" id="industry-infrastructure">
+              <figure>
+                <img
+                  src="/assets/images/industry-infrastructure-840.webp"
+                  srcset="
+                    /assets/images/industry-infrastructure-480.webp 480w,
+                    /assets/images/industry-infrastructure-840.webp 840w
+                  "
+                  sizes="(max-width: 760px) calc(100vw - 40px), 420px"
+                  width="840"
+                  height="560"
+                  loading="lazy"
+                  decoding="async"
+                  alt="配管とタンクを備えた水処理設備のイメージ"
+                />
+                <figcaption>
+                  水処理設備のイメージ /
+                  <a
+                    href="https://www.pexels.com/photo/purifiers-at-a-water-treatment-plant-12726229/"
+                    >Photo: Alexey Demidov</a
+                  >
+                </figcaption>
+              </figure>
+              <div class="industry-copy">
+                <p class="item-number">03</p>
+                <h3 class="industry-title">生活・環境インフラ</h3>
+                <p class="industry-scope">
+                  設備メンテナンス・点検・施設管理・環境・リサイクル・水処理
+                </p>
+                <h4>市場・商習慣の特徴</h4>
+                <p>
+                  設備保守や施設管理では、日々の運転管理、定期点検、記録の蓄積を通じた継続的な対応が求められます。安全・品質・法令への対応と、現場を担う人材の確保が、事業を続ける土台です。
+                </p>
+                <h4>篝が着目する理由</h4>
+                <p>
+                  日々の暮らしや企業活動を支える、止めることのできない機能を担う領域です。地域に根ざした対応力を大切にしながら、人材育成、業務の標準化、点検情報のデジタル化を進め、長く頼られる事業を育てたいと考えています。
+                </p>
+              </div>
+            </article>
+          </div>
+          <p class="industry-note">
+            写真は各分野のイメージであり、当社の事業所・投資先を示すものではありません。市場の特徴は分野によって異なり、投資判断は個社の事業・財務・人材を確認して行います。
+          </p>
+          <details class="industry-sources">
+            <summary>市場の参考資料</summary>
+            <ul>
+              <li>
+                食・観光：観光庁
+                <a
+                  href="https://www.mlit.go.jp/kankocho/seisaku_seido/kihonkeikaku/inbound_kaifuku/chihoyukyaku/nohaku.html"
+                  >農泊の推進</a
+                >、<a
+                  href="https://www.mlit.go.jp/kankocho/seisaku_seido/kihonkeikaku/kokunaikoryu/heijunka.html"
+                  >国内旅行需要の平準化の促進</a
+                >
+              </li>
+              <li>
+                中小製造：経済産業省
+                <a
+                  href="https://www.meti.go.jp/report/whitepaper/mono/2020/honbun_html/honbun/102011_4.html"
+                  >2020年版ものづくり白書 ものづくり人材の確保と育成</a
+                >
+              </li>
+              <li>
+                生活・環境インフラ：厚生労働省
+                <a
+                  href="https://www.mhlw.go.jp/web/t_doc?dataId=00tc5121&amp;dataType=1&amp;pageNo=1"
+                  >ビルメンテナンス業務に係る発注関係事務の運用に関するガイドライン</a
+                >
+              </li>
+            </ul>
+          </details>
+          <!-- industry-features:end -->
         </div>
       </section>
       <section
@@ -581,6 +805,6 @@
         <p><small>&copy; 2026 Kagari Holdings Co., Ltd.</small></p>
       </div>
     </footer>
-    <script src="/assets/js/main.js?v=20261109-r1" defer></script>
+    <script src="/assets/js/main.js?v=20261113-r1" defer></script>
   </body>
 </html>

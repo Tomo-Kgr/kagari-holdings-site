@@ -25,6 +25,152 @@ firstImageReady.then(() =>
   requestAnimationFrame(() => requestAnimationFrame(loadReadingFonts)),
 );
 
+function enableHeroCarousel() {
+  const hero = document.querySelector("[data-hero-carousel]");
+  if (!hero) return;
+  const slides = [...hero.querySelectorAll("[data-hero-slide]")];
+  const selectors = [...hero.querySelectorAll("[data-hero-select]")];
+  const playback = hero.querySelector("[data-hero-playback]");
+  const caption = hero.querySelector("[data-hero-caption]");
+  const credit = hero.querySelector("[data-hero-credit]");
+  const failed = new Set();
+  const loading = new Map();
+  let current = 0;
+  let paused = reducedMotion.matches || !!navigator.connection?.saveData;
+  let hovered = false;
+  let visible = true;
+  let ready = false;
+  let timer;
+  let preloadTimer;
+  let request = 0;
+  const canRun = () =>
+    ready && !paused && !hovered && visible && !document.hidden;
+
+  function updatePlayback() {
+    const label = paused ? "スライドショーを再生" : "スライドショーを一時停止";
+    playback.classList.toggle("is-paused", paused);
+    playback.setAttribute("aria-label", label);
+    playback.title = label;
+    hero.dataset.paused = String(paused);
+  }
+
+  function nextIndex() {
+    for (let offset = 1; offset < slides.length; offset++) {
+      const index = (current + offset) % slides.length;
+      if (!failed.has(index)) return index;
+    }
+    return current;
+  }
+
+  function prepare(index) {
+    if (loading.has(index)) return loading.get(index);
+    const slide = slides[index];
+    const template = slide.querySelector("template");
+    if (template) {
+      slide.append(template.content.cloneNode(true));
+      template.remove();
+    }
+    const image = slide.querySelector("img");
+    const promise = image
+      .decode()
+      .then(() => true)
+      .catch(() => {
+        failed.add(index);
+        loading.delete(index);
+        return false;
+      });
+    loading.set(index, promise);
+    return promise;
+  }
+
+  function clearTimers() {
+    clearTimeout(timer);
+    clearTimeout(preloadTimer);
+  }
+
+  function schedule() {
+    clearTimers();
+    if (!canRun() || nextIndex() === current) return;
+    // Decode just the next photo after the initial image and text have loaded.
+    preloadTimer = setTimeout(() => prepare(nextIndex()), 1500);
+    timer = setTimeout(() => showSlide(nextIndex()), 7000);
+  }
+
+  function setPaused(value) {
+    paused = value;
+    if (paused) request++;
+    updatePlayback();
+    schedule();
+  }
+
+  async function showSlide(index, manual = false) {
+    clearTimers();
+    if (manual) {
+      paused = true;
+      failed.delete(index);
+      updatePlayback();
+    }
+    const ticket = ++request;
+    const loaded = await prepare(index);
+    if (ticket !== request) return;
+    if (!loaded || (!manual && !canRun())) {
+      schedule();
+      return;
+    }
+    slides.forEach((slide, i) => {
+      slide.classList.toggle("is-active", i === index);
+      slide.setAttribute("aria-hidden", String(i !== index));
+      selectors[i].setAttribute("aria-pressed", String(i === index));
+    });
+    current = index;
+    hero.dataset.slide = String(index);
+    caption.textContent = slides[index].dataset.caption;
+    credit.textContent = slides[index].dataset.credit;
+    credit.href = slides[index].dataset.source;
+    schedule();
+  }
+
+  selectors.forEach((button, index) =>
+    button.addEventListener("click", () => showSlide(index, true)),
+  );
+  playback.addEventListener("click", () => setPaused(!paused));
+  hero.addEventListener("focusin", (event) => {
+    if (!playback.contains(event.target)) setPaused(true);
+  });
+  hero.addEventListener("pointerenter", (event) => {
+    if (event.pointerType !== "mouse") return;
+    hovered = true;
+    schedule();
+  });
+  hero.addEventListener("pointerleave", (event) => {
+    if (event.pointerType !== "mouse") return;
+    hovered = false;
+    schedule();
+  });
+  document.addEventListener("visibilitychange", schedule);
+  reducedMotion.addEventListener("change", () => {
+    if (reducedMotion.matches) setPaused(true);
+  });
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(
+      ([entry]) => {
+        visible = entry.isIntersecting;
+        schedule();
+      },
+      { threshold: 0.1 },
+    ).observe(hero);
+  }
+  hero.dataset.slide = "0";
+  updatePlayback();
+  hero.querySelector(".hero-controls").hidden = false;
+  firstImageReady.then(() => {
+    ready = true;
+    schedule();
+  });
+}
+
+enableHeroCarousel();
+
 function updateHeader() {
   header.classList.toggle("is-scrolled", window.scrollY > 24);
 }

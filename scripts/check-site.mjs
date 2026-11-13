@@ -37,11 +37,65 @@ for (const statement of statements) {
     "Philosophy statement must match the approved copy",
   );
 }
-assert.equal(
-  home.match(/<ol class="promise-list">[\s\S]*?<\/ol>/)[0],
-  philosophy.match(/<ol class="promise-list">[\s\S]*?<\/ol>/)[0],
-  "Promises must match on both pages",
+for (const [html, className] of [
+  [home, "principles-summary-list"],
+  [philosophy, "principles-detail-list"],
+]) {
+  const list = html.match(
+    new RegExp(`<ol class="${className}">[\\s\\S]*?</ol>`),
+  )?.[0];
+  assert.ok(list, `Missing ${className}`);
+  assert.equal(
+    (list.match(/<li>/g) || []).length,
+    5,
+    "Five corporate principles required",
+  );
+  assert.ok(
+    !html.includes("行動方針") && !html.includes("十箇条"),
+    "Internal guidelines must not be published",
+  );
+}
+assert.ok(home.includes('href="/philosophy/#principles"'));
+for (const clause of [
+  "当社は、日本を強く、豊かにするために存在します。",
+  "投資判断の責任も、現場でともに汗をかく責任も、すべて当社が負います。",
+  "何より群を抜く誠実さをもって",
+  "生み出した成果に対する正当な還元を約束します。",
+  "世界に認められるブランドと実力を持つ投資会社へと前進し続けます。",
+  "国際情勢が揺らぎ、エネルギーや原材料の確保さえ当たり前ではなくなった今",
+])
+  assert.ok(
+    philosophy.includes(clause),
+    `Missing approved MVV copy: ${clause}`,
+  );
+for (const html of [home, philosophy]) {
+  assert.equal((html.match(/data-hero-slide\s/g) || []).length, 4);
+  assert.equal((html.match(/data-hero-select=/g) || []).length, 4);
+  assert.ok(
+    html.includes("data-hero-playback") && !html.includes("industry-gallery"),
+  );
+}
+const policy = await fs.readFile(
+  path.join(root, "investment-policy/index.html"),
+  "utf8",
 );
+const featurePattern =
+  /<!-- industry-features:start -->[\s\S]*?<!-- industry-features:end -->/;
+const normalizeFeature = (html) =>
+  html
+    .match(featurePattern)[0]
+    .replace(/<\/?h[234][^>]*>/g, "")
+    .replace(/\s+/g, " ");
+assert.equal(
+  normalizeFeature(home),
+  normalizeFeature(policy),
+  "Sector explanations must stay in sync",
+);
+for (const html of [home, policy]) {
+  assert.equal((html.match(/class="industry-feature"/g) || []).length, 3);
+  assert.equal((html.match(/市場・商習慣の特徴/g) || []).length, 3);
+  assert.equal((html.match(/篝が着目する理由/g) || []).length, 3);
+}
 const titles = new Set();
 for (const file of pages) {
   const html = await fs.readFile(file, "utf8");
