@@ -93,7 +93,7 @@ function enableHeroCarousel() {
     if (!canRun() || nextIndex() === current) return;
     // Decode just the next photo after the initial image and text have loaded.
     preloadTimer = setTimeout(() => prepare(nextIndex()), 1500);
-    timer = setTimeout(() => showSlide(nextIndex()), 7000);
+    timer = setTimeout(() => showSlide(nextIndex()), 3000);
   }
 
   function setPaused(value) {

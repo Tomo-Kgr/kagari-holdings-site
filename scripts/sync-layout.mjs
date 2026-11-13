@@ -3,7 +3,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
-const version = "20261113-r1";
+const version = "20261113-r2";
 let home = await fs.readFile(path.join(root, "index.html"), "utf8");
 // The home page summarizes the principles; the philosophy page carries the full text.
 const header = home.match(/<header class="site-header"[\s\S]*?<\/header>/)[0];
