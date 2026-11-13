@@ -3,7 +3,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
-const version = "20261113-r2";
+const version = "20261113-r3";
 let home = await fs.readFile(path.join(root, "index.html"), "utf8");
 // The home page summarizes the principles; the philosophy page carries the full text.
 const header = home.match(/<header class="site-header"[\s\S]*?<\/header>/)[0];
@@ -46,12 +46,9 @@ for (const file of files) {
   let html = await fs.readFile(file, "utf8");
   if (html.includes('http-equiv="refresh"')) continue;
   if (file === path.join(root, "philosophy/index.html")) {
-    for (const part of ["slides", "controls"]) {
-      const pattern = new RegExp(
-        `<!-- carousel-${part}:start -->[\\s\\S]*?<!-- carousel-${part}:end -->`,
-      );
-      html = html.replace(pattern, home.match(pattern)[0]);
-    }
+    const pattern =
+      /<!-- carousel-slides:start -->[\s\S]*?<!-- carousel-slides:end -->/;
+    html = html.replace(pattern, home.match(pattern)[0]);
   }
   if (file === path.join(root, "investment-policy/index.html")) {
     const pattern =

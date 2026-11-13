@@ -29,30 +29,16 @@ function enableHeroCarousel() {
   const hero = document.querySelector("[data-hero-carousel]");
   if (!hero) return;
   const slides = [...hero.querySelectorAll("[data-hero-slide]")];
-  const selectors = [...hero.querySelectorAll("[data-hero-select]")];
-  const playback = hero.querySelector("[data-hero-playback]");
-  const caption = hero.querySelector("[data-hero-caption]");
-  const credit = hero.querySelector("[data-hero-credit]");
   const failed = new Set();
   const loading = new Map();
   let current = 0;
   let paused = reducedMotion.matches || !!navigator.connection?.saveData;
-  let hovered = false;
   let visible = true;
   let ready = false;
   let timer;
   let preloadTimer;
   let request = 0;
-  const canRun = () =>
-    ready && !paused && !hovered && visible && !document.hidden;
-
-  function updatePlayback() {
-    const label = paused ? "スライドショーを再生" : "スライドショーを一時停止";
-    playback.classList.toggle("is-paused", paused);
-    playback.setAttribute("aria-label", label);
-    playback.title = label;
-    hero.dataset.paused = String(paused);
-  }
+  const canRun = () => ready && !paused && visible && !document.hidden;
 
   function nextIndex() {
     for (let offset = 1; offset < slides.length; offset++) {
@@ -96,61 +82,33 @@ function enableHeroCarousel() {
     timer = setTimeout(() => showSlide(nextIndex()), 3000);
   }
 
-  function setPaused(value) {
-    paused = value;
-    if (paused) request++;
-    updatePlayback();
+  function updateMotionPreference() {
+    paused = reducedMotion.matches || !!navigator.connection?.saveData;
+    request++;
+    hero.dataset.paused = String(paused);
     schedule();
   }
 
-  async function showSlide(index, manual = false) {
+  async function showSlide(index) {
     clearTimers();
-    if (manual) {
-      paused = true;
-      failed.delete(index);
-      updatePlayback();
-    }
     const ticket = ++request;
     const loaded = await prepare(index);
     if (ticket !== request) return;
-    if (!loaded || (!manual && !canRun())) {
+    if (!loaded || !canRun()) {
       schedule();
       return;
     }
     slides.forEach((slide, i) => {
       slide.classList.toggle("is-active", i === index);
-      slide.setAttribute("aria-hidden", String(i !== index));
-      selectors[i].setAttribute("aria-pressed", String(i === index));
     });
     current = index;
     hero.dataset.slide = String(index);
-    caption.textContent = slides[index].dataset.caption;
-    credit.textContent = slides[index].dataset.credit;
-    credit.href = slides[index].dataset.source;
     schedule();
   }
 
-  selectors.forEach((button, index) =>
-    button.addEventListener("click", () => showSlide(index, true)),
-  );
-  playback.addEventListener("click", () => setPaused(!paused));
-  hero.addEventListener("focusin", (event) => {
-    if (!playback.contains(event.target)) setPaused(true);
-  });
-  hero.addEventListener("pointerenter", (event) => {
-    if (event.pointerType !== "mouse") return;
-    hovered = true;
-    schedule();
-  });
-  hero.addEventListener("pointerleave", (event) => {
-    if (event.pointerType !== "mouse") return;
-    hovered = false;
-    schedule();
-  });
   document.addEventListener("visibilitychange", schedule);
-  reducedMotion.addEventListener("change", () => {
-    if (reducedMotion.matches) setPaused(true);
-  });
+  reducedMotion.addEventListener("change", updateMotionPreference);
+  navigator.connection?.addEventListener("change", updateMotionPreference);
   if ("IntersectionObserver" in window) {
     new IntersectionObserver(
       ([entry]) => {
@@ -161,8 +119,7 @@ function enableHeroCarousel() {
     ).observe(hero);
   }
   hero.dataset.slide = "0";
-  updatePlayback();
-  hero.querySelector(".hero-controls").hidden = false;
+  hero.dataset.paused = String(paused);
   firstImageReady.then(() => {
     ready = true;
     schedule();

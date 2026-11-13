@@ -37,7 +37,8 @@ Verified: 2026-11-09
 
 The industry photographs illustrate their respective industries, not Kagari facilities,
 employees, investment targets, portfolio companies or endorsements. Resized and
-compressed as WebP without content edits. On-page photographer attribution retained.
+compressed as WebP without content edits. Photographer attribution is grouped at
+/privacy-policy/#images, linked from every page footer.
 
 2026-11-13 hero carousel variants
 hero-manufacturing-840.webp, hero-manufacturing-1280.webp: same gumigasuki original above.
@@ -62,3 +63,8 @@ Resized and compressed without content edits; no location claim.
 
 kagari-og-20261108.png
 Rendered from the website's own typography and logo.
+
+kagaribi-840.webp, kagaribi-1680.webp
+Existing AI-generated shrine and fire-basket illustration created for this website.
+Not a photograph of an actual shrine. Used as the opening background from 2026-11-13.
+Generation disclosure retained at /privacy-policy/#images.

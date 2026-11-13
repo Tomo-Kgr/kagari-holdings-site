@@ -17,13 +17,13 @@
     <link
       rel="preload"
       as="font"
-      href="/assets/fonts/font-9ffc3e905916a6e3.woff2"
+      href="/assets/fonts/font-a335f86e29e8a073.woff2"
       type="font/woff2"
       crossorigin
     />
-    <link rel="stylesheet" href="/assets/css/fonts.css?v=20261113-r2" />
-    <link rel="stylesheet" href="/assets/css/styles.css?v=20261113-r2" />
-    <link rel="stylesheet" href="/assets/css/editorial.css?v=20261113-r2" />
+    <link rel="stylesheet" href="/assets/css/fonts.css?v=20261113-r3" />
+    <link rel="stylesheet" href="/assets/css/styles.css?v=20261113-r3" />
+    <link rel="stylesheet" href="/assets/css/editorial.css?v=20261113-r3" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="ja_JP" />
     <meta property="og:site_name" content="篝ホールディングス株式会社" />
@@ -106,55 +106,57 @@
         class="philosophy-visual"
         role="region"
         aria-labelledby="philosophy-title"
-        aria-roledescription="カルーセル"
         data-hero-carousel
       >
         <!-- carousel-slides:start -->
         <div
-          class="hero-slide is-active"
+          class="hero-slide hero-slide--kagaribi is-active"
           data-hero-slide
-          role="group"
-          aria-roledescription="スライド"
-          aria-label="1 / 4 日本の町並み"
-          data-caption="長野県 奈良井宿"
-          data-credit="Joris Beugels"
-          data-source="https://unsplash.com/photos/old-japanese-wooden-houses-line-a-quiet-street-yRGrPNnMKB0"
-        >
-          <picture>
-            <source
-              type="image/avif"
-              srcset="
-                /assets/images/narai-840.avif   840w,
-                /assets/images/narai-1680.avif 1680w
-              "
-              sizes="100vw"
-            />
-            <img
-              class="hero-image"
-              src="/assets/images/narai-1680.webp"
-              srcset="
-                /assets/images/narai-840.webp   840w,
-                /assets/images/narai-1680.webp 1680w
-              "
-              sizes="100vw"
-              width="1680"
-              height="1260"
-              alt="長野県・奈良井宿の木造の町並みと山並み"
-              fetchpriority="high"
-            />
-          </picture>
-        </div>
-        <div
-          class="hero-slide"
-          data-hero-slide
-          role="group"
-          aria-roledescription="スライド"
-          aria-label="2 / 4 ものづくり"
           aria-hidden="true"
-          data-caption="ものづくり"
-          data-credit="gumigasuki / Pixabay"
-          data-source="https://pixabay.com/photos/spinning-small-factory-craftsman-645620/"
         >
+          <img
+            class="hero-image"
+            src="/assets/images/kagaribi-1680.webp"
+            srcset="
+              /assets/images/kagaribi-840.webp   840w,
+              /assets/images/kagaribi-1680.webp 1672w
+            "
+            sizes="100vw"
+            width="1672"
+            height="941"
+            alt=""
+            fetchpriority="high"
+          />
+        </div>
+        <div class="hero-slide" data-hero-slide aria-hidden="true">
+          <template>
+            <picture>
+              <source
+                type="image/avif"
+                srcset="
+                  /assets/images/narai-840.avif   840w,
+                  /assets/images/narai-1680.avif 1680w
+                "
+                sizes="100vw"
+              />
+              <img
+                class="hero-image"
+                src="/assets/images/narai-1680.webp"
+                srcset="
+                  /assets/images/narai-840.webp   840w,
+                  /assets/images/narai-1680.webp 1680w
+                "
+                sizes="100vw"
+                width="1680"
+                height="1260"
+                alt=""
+                decoding="async"
+                fetchpriority="low"
+              />
+            </picture>
+          </template>
+        </div>
+        <div class="hero-slide" data-hero-slide aria-hidden="true">
           <template>
             <img
               class="hero-image"
@@ -166,23 +168,13 @@
               sizes="100vw"
               width="1280"
               height="853"
-              alt="町工場で金属をへら絞り加工する職人の手元"
+              alt=""
               decoding="async"
               fetchpriority="low"
             />
           </template>
         </div>
-        <div
-          class="hero-slide"
-          data-hero-slide
-          role="group"
-          aria-roledescription="スライド"
-          aria-label="3 / 4 農業"
-          aria-hidden="true"
-          data-caption="農業 / 山形の田園"
-          data-credit="Dennis Peterson / Unsplash"
-          data-source="https://unsplash.com/photos/a-large-field-of-grass-2vi9sNl92cU"
-        >
+        <div class="hero-slide" data-hero-slide aria-hidden="true">
           <template>
             <img
               class="hero-image"
@@ -194,23 +186,13 @@
               sizes="100vw"
               width="1680"
               height="1122"
-              alt="山形県で収穫期を迎えた稲が広がる田園風景"
+              alt=""
               decoding="async"
               fetchpriority="low"
             />
           </template>
         </div>
-        <div
-          class="hero-slide"
-          data-hero-slide
-          role="group"
-          aria-roledescription="スライド"
-          aria-label="4 / 4 漁業"
-          aria-hidden="true"
-          data-caption="漁業 / 日本の漁港"
-          data-credit="W Luna / Pexels"
-          data-source="https://www.pexels.com/photo/fishing-boats-moored-in-a-port-10304680/"
-        >
+        <div class="hero-slide" data-hero-slide aria-hidden="true">
           <template>
             <img
               class="hero-image"
@@ -222,7 +204,7 @@
               sizes="100vw"
               width="1680"
               height="1120"
-              alt="日本の漁港に並んで停泊する漁船"
+              alt=""
               decoding="async"
               fetchpriority="low"
             />
@@ -259,69 +241,6 @@
             </article>
           </div>
         </section>
-        <!-- carousel-controls:start -->
-        <div class="hero-footer">
-          <div class="hero-controls" hidden>
-            <div class="hero-pagination" role="group" aria-label="写真を選ぶ">
-              <button
-                class="hero-dot"
-                type="button"
-                data-hero-select="0"
-                aria-label="日本の町並みの写真を表示"
-                aria-pressed="true"
-                title="日本の町並み"
-              ></button>
-              <button
-                class="hero-dot"
-                type="button"
-                data-hero-select="1"
-                aria-label="ものづくりの写真を表示"
-                aria-pressed="false"
-                title="ものづくり"
-              ></button>
-              <button
-                class="hero-dot"
-                type="button"
-                data-hero-select="2"
-                aria-label="農業の写真を表示"
-                aria-pressed="false"
-                title="農業"
-              ></button>
-              <button
-                class="hero-dot"
-                type="button"
-                data-hero-select="3"
-                aria-label="漁業の写真を表示"
-                aria-pressed="false"
-                title="漁業"
-              ></button>
-            </div>
-            <button
-              class="hero-playback"
-              type="button"
-              data-hero-playback
-              aria-label="スライドショーを一時停止"
-              title="スライドショーを一時停止"
-            >
-              <span class="hero-playback-icon" aria-hidden="true"></span>
-            </button>
-          </div>
-          <p class="photo-credit">
-            <span data-hero-caption>長野県 奈良井宿</span
-            ><span class="photo-credit-source"
-              >Photo:
-              <a
-                data-hero-credit
-                href="https://unsplash.com/photos/old-japanese-wooden-houses-line-a-quiet-street-yRGrPNnMKB0"
-                >Joris Beugels</a
-              ></span
-            >
-            <span class="photo-context"
-              >事業イメージ（当社の投資先を示すものではありません）</span
-            >
-          </p>
-        </div>
-        <!-- carousel-controls:end -->
       </div>
       <section class="page-section philosophy-vision">
         <div class="container">
@@ -418,11 +337,12 @@
           ><a href="/process/#faq">よくあるご質問</a
           ><a href="/news/">お知らせ</a><a href="/contact/">お問い合わせ</a
           ><a href="/koukoku/">電子公告</a
-          ><a href="/privacy-policy/">プライバシーポリシー</a>
+          ><a href="/privacy-policy/">プライバシーポリシー</a
+          ><a href="/privacy-policy/#images">写真・画像について</a>
         </nav>
         <p><small>&copy; 2026 Kagari Holdings Co., Ltd.</small></p>
       </div>
     </footer>
-    <script src="/assets/js/main.js?v=20261113-r2" defer></script>
+    <script src="/assets/js/main.js?v=20261113-r3" defer></script>
   </body>
 </html>

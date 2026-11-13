@@ -69,12 +69,28 @@ for (const clause of [
     `Missing approved MVV copy: ${clause}`,
   );
 for (const html of [home, philosophy]) {
-  assert.equal((html.match(/data-hero-slide\s/g) || []).length, 4);
-  assert.equal((html.match(/data-hero-select=/g) || []).length, 4);
+  assert.equal((html.match(/data-hero-slide\s/g) || []).length, 5);
+  assert.ok(html.includes('class="hero-slide hero-slide--kagaribi is-active"'));
   assert.ok(
-    html.includes("data-hero-playback") && !html.includes("industry-gallery"),
+    !/data-hero-select|data-hero-playback|photo-credit|industry-gallery/.test(
+      html,
+    ),
   );
+  assert.ok(html.includes('href="/privacy-policy/#images"'));
 }
+const privacy = await fs.readFile(
+  path.join(root, "privacy-policy/index.html"),
+  "utf8",
+);
+assert.ok(privacy.includes('id="images"') && privacy.includes("AI生成画像"));
+for (const credit of [
+  "Joris Beugels",
+  "gumigasuki",
+  "Dennis Peterson",
+  "W Luna",
+  "Alexey Demidov",
+])
+  assert.ok(privacy.includes(credit), `Missing photo credit: ${credit}`);
 const policy = await fs.readFile(
   path.join(root, "investment-policy/index.html"),
   "utf8",
