@@ -5,6 +5,36 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/process/:path*",
+      "destination": "/business",
+      "statusCode": 301
+    },
+    {
+      "source": "/value-up/:path*",
+      "destination": "/business",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact/owners/:path*",
+      "destination": "/contact",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact/consulting/:path*",
+      "destination": "/contact",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact/advisors/:path*",
+      "destination": "/contact",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact/general/:path*",
+      "destination": "/contact",
+      "statusCode": 301
+    },
+    {
       "source": "/investment-themes/:path*",
       "destination": "/investment-policy",
       "permanent": true

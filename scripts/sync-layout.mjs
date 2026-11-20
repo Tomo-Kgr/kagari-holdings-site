@@ -3,9 +3,9 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
-const version = "20261113-r3";
+const version = "20261119-r1";
 let home = await fs.readFile(path.join(root, "index.html"), "utf8");
-// The home page summarizes the principles; the philosophy page carries the full text.
+// Navigation and organization metadata stay shared; each page owns its content.
 const header = home.match(/<header class="site-header"[\s\S]*?<\/header>/)[0];
 const footer = home.match(/<footer class="site-footer"[\s\S]*?<\/footer>/)[0];
 const organization = {
@@ -41,24 +41,19 @@ async function collect(dir) {
 }
 await collect(root);
 const escape = (value) =>
-  value.replaceAll("&", "&amp;").replaceAll('"', "&quot;");
+  value
+    .replaceAll("&amp;", "&")
+    .replaceAll("&quot;", '"')
+    .replaceAll("&", "&amp;")
+    .replaceAll('"', "&quot;");
 for (const file of files) {
   let html = await fs.readFile(file, "utf8");
   if (html.includes('http-equiv="refresh"')) continue;
-  if (file === path.join(root, "philosophy/index.html")) {
-    const pattern =
-      /<!-- carousel-slides:start -->[\s\S]*?<!-- carousel-slides:end -->/;
-    html = html.replace(pattern, home.match(pattern)[0]);
-  }
-  if (file === path.join(root, "investment-policy/index.html")) {
-    const pattern =
-      /<!-- industry-features:start -->[\s\S]*?<!-- industry-features:end -->/;
-    const feature = home
-      .match(pattern)[0]
-      .replace(/<(\/?)h3(\s[^>]*|)>/g, "<$1h2$2>")
-      .replace(/<(\/?)h4>/g, "<$1h3>");
-    html = html.replace(pattern, feature);
-  }
+  if (!html.includes("document.documentElement.classList.add"))
+    html = html.replace(
+      "<head>",
+      '<head>\n<script>document.documentElement.classList.add("js");</script>',
+    );
   html = html
     .replace(/<header class="site-header"[\s\S]*?<\/header>/, header)
     .replace(/<footer class="site-footer"[\s\S]*?<\/footer>/, footer)
@@ -92,15 +87,16 @@ for (const file of files) {
     "og:description": description,
     "og:url": url,
     "og:image":
-      "https://kagariholdings.com/assets/images/kagari-og-20261108.png",
+      "https://kagariholdings.com/assets/images/kagari-og-20261119.png",
     "og:image:width": "1200",
     "og:image:height": "630",
-    "og:image:alt": "篝ホールディングス株式会社 日本の中小企業を、次の世代へ。",
+    "og:image:alt":
+      "篝ホールディングス株式会社 灯を継ぐ 日本の知恵・技術・心を、次の世代へ",
     "twitter:card": "summary_large_image",
     "twitter:title": title,
     "twitter:description": description,
     "twitter:image":
-      "https://kagariholdings.com/assets/images/kagari-og-20261108.png",
+      "https://kagariholdings.com/assets/images/kagari-og-20261119.png",
   };
   html = html.replace(
     "</head>",
@@ -112,25 +108,6 @@ for (const file of files) {
       .join("\n") +
       `\n  <script type="application/ld+json">${JSON.stringify(organization)}</script>\n</head>`,
   );
-  const labels = {
-    "FOR OWNERS": "経営者様へ",
-    "FOR ADVISORS": "M&amp;Aアドバイザー・金融機関様へ",
-    "CONTACT ROUTE": "CONTACT",
-    "VALUE UP": "成長支援",
-    APPROACH: "取り組み方",
-    "OUR TEAM": "TEAM",
-    FINANCE: "経営を支える体制",
-    PROCESS: "承継プロセス",
-    THEMES: "支援内容",
-    CLIENTS: "ご相談の対象",
-    ENGAGEMENT: "支援の進め方",
-    STRUCTURE: "支援体制",
-  };
-  for (const [from, to] of Object.entries(labels))
-    html = html.replaceAll(
-      `<p class="eyebrow">${from}</p>`,
-      `<p class="eyebrow">${to}</p>`,
-    );
   await fs.writeFile(file, html);
 }
 console.log(`Synced navigation and metadata across ${files.length} pages.`);

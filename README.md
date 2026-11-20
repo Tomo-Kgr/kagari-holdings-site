@@ -1,65 +1,49 @@
 # Kagari Holdings Site
 
-Static corporate website for Kagari Holdings Co., Ltd.
+Static corporate website, hosted on Vercel. Production deploys from `main`.
 
-## Structure
+## November 19 Revision
 
-- `index.html`: semantic HTML, SEO metadata, OGP, Twitter Card, JSON-LD
-- `assets/css/styles.css`: responsive layout and visual system
-- `assets/css/editorial.css`: current editorial components, typography and page rhythm
-- `assets/js/main.js`: navigation state and restrained scroll reveal
-- `assets/css/fonts.css`, `assets/fonts/`: self-hosted fonts and their SIL Open Font Licenses
-- `assets/images/`: optimized photographs and the supplied calligraphic brand mark
-- `team/index.html`: representative profile and finance operations
-- `philosophy/index.html`: mission, vision and the five corporate principles approved in the November 13 MVV; the home page summarizes these principles. Internal behavioral guidelines are not public.
-- `investment-policy/index.html`: approved investment criteria; the old `investment-themes` URL permanently redirects here
-- `news/index.html`: dated, factual company announcements
-- `consulting/index.html`, `contact/consulting/index.html`: consulting services and email contact
-- `koukoku/index.html`: guide to the external electronic notice page at freee; retain the registered external URL
-- `privacy-policy/index.html`: privacy policy and contact information
-- `robots.txt`, `sitemap.xml`, `site.webmanifest`, `favicon.png`: publishing assets
+The approved revision has seven primary pages: home, philosophy, principal investment (`/business/`), consulting, investment policy, representative message (`/team/`), and contact. Existing news, electronic notices and privacy policy remain available.
 
-## Deploy
+- Contact is consolidated at `/contact/`, with anchors for owners, consulting, advisors and general inquiries. The four former contact subpages return HTTP 301.
+- `/process/` and `/value-up/` return HTTP 301 to `/business/`.
+- The vision wording, registration-linked company facts, representative message and biography, and investment funding row remain unchanged pending separate confirmation.
+- `data-preserved` identifies the representative passages intentionally exempted from the new terminology rules. Do not change those passages without approval.
+- Photo provenance is kept in the company's internal material register, not the public website or deployment. Font licenses remain with the self-hosted fonts.
+- The revised reference uses a single shrine/fire hero, not the previous carousel. On narrow screens the focal position is adjusted to keep the large fire basket in view.
 
-The output is a static site. Run `node scripts/build.mjs` to produce `dist/`; Vercel runs this command automatically. The release build stops if any public page contains an unresolved confirmation marker. Publish only `dist/` when using another host.
+## Development
 
-Vercel deploys the `main` branch. Keep new work on a separate branch when a preview is needed before publication. The HTML uses root-relative paths, so GitHub Pages requires the existing custom domain (or path adjustments for a repository subpath).
+Page copy lives in each route's `index.html`. Shared tokens, navigation and legacy page styles are in `assets/css/styles.css`; the revision's sections are in `assets/css/editorial.css`. `assets/js/main.js` handles the responsive menu and local font loading. The calligraphic brand mark and representative portrait remain the existing supplied assets.
 
-Do not push unconfirmed material to the public repository or a remotely hosted preview. `node scripts/build.mjs --preview` creates a local-only review in `.review/site/`, including the recruitment draft at `/draft-recruit/`. Recruitment drafts in `.drafts/` and all `.review/` files are ignored by Git and excluded from production builds. The existing `/recruit/` placeholder remains `noindex` and unlinked until recruitment details are approved.
+Edit the home page's header/footer, then run:
 
-Run `node scripts/preview.mjs` after the review build to serve it on this PC only. The server prints a loopback URL and tries another port if its default port is occupied. Stop it with Ctrl+C when finished.
+```text
+node scripts/sync-layout.mjs
+node scripts/update-fonts.mjs --check
+node scripts/check-site.mjs
+node scripts/build.mjs
+node scripts/preview.mjs --dist
+```
 
-## Editing
+The preview server prints an available loopback URL and models the configured redirects. Stop it after review. `scripts/build.mjs` only publishes explicitly allowed routes and asset types; source documents, material registers, review reports, environment files and drafts are never copied.
 
-Edit page copy in each directory's `index.html`. Base tokens and legacy components live in `assets/css/styles.css`; the current editorial layout and components live in `assets/css/editorial.css`. Menu and motion behavior live in `assets/js/main.js`. The header and footer are static HTML so navigation works without JavaScript. Edit shared navigation in the home page, then run `node scripts/sync-layout.mjs` to copy it and the shared SEO metadata across pages. Update the release version in that script when shipping new styles or JavaScript. Add new routes to `scripts/build.mjs` and the sitemap.
+After adding characters, regenerate local font subsets with `node scripts/update-fonts.mjs`. The site uses Noto Serif JP 400-600, Cinzel 600 and Cormorant Garamond. Keep the generated font files, CSS and coverage record together. Fonts are not requested from an external service by visitors.
 
-Fonts are hosted locally and subset to the characters used across all HTML pages. After changing copy, run `node scripts/update-fonts.mjs --check`; if new characters are missing, run `node scripts/update-fonts.mjs` (Node 18+ and internet access required). Commit the generated CSS, fonts, coverage file and preload links together. Native Mincho fonts remain a fallback. Retain the SIL licenses in `assets/fonts/`.
+## Review and Publication
 
-Add `--include-drafts` when generating or checking fonts for the local recruitment draft.
+Keep revisions needing approval on a separate `codex/` branch. Push that branch for a Vercel Preview deployment; **do not push to `main` until the user approves publication**. Vercel Preview builds receive `noindex, nofollow` metadata and a disallow-all robots file. Canonical URLs continue to point to the production domain.
 
-Do not reintroduce externally hosted fonts or analytics without reviewing the privacy policy. Update the CSS/JS query version in every HTML file when releasing asset changes, and update the sitemap dates for materially changed pages.
+The optional local-only `node scripts/build.mjs --preview` mode includes the recruitment draft from `.drafts/`. Never upload that output. The public recruitment placeholder stays noindex and unlinked.
 
-The contact pages open the visitor's email application; they do not submit a form or store leads on this website. Microsoft 365 was selected for a future form connection, but no web submission endpoint or automatic reply has been configured. Do not replace the working email links with a nonfunctional form. A connection must be scoped to the intended mailbox, include spam protection, and pass submission/receipt/reply tests before release. Never place credentials in HTML, JavaScript served to visitors, or Git. The privacy policy should be reviewed when operational practices, processors, recruitment processes or tracking services change.
+The contact page opens the visitor's email application and does not submit a web form, store leads or send automated responses. Keep the working `mailto:` address unless a real, tested submission service is connected. Never put credentials in browser code, source control or preview reports.
 
-## Image Provenance
+## Checks
 
-- `narai-*.webp`: real Narai-juku street photograph by Joris Beugels, used under the Unsplash License. See `assets/images/credits.txt`. The location is not presented as a Kagari property or portfolio company.
-- `kagari-og-20261108.png`: social sharing image using the supplied logo and site typography.
-- `factory-*.webp`: legacy generated image, no longer displayed on current pages.
-- `kagari-mark.png`: the original calligraphic mark from the company-supplied presentation cover. The optimized `kagari-mark-192.png` is used as an alpha mask to match light and dark headers; the original also supplies `favicon.png`.
-- `eiji-nagakura.webp`: the representative's real photograph extracted from the company-supplied presentation, resized and compressed.
-- `hero-*.webp`: real metalworking, agriculture and fishery photographs in the home hero and philosophy Mission background, alongside Narai-juku. The automatic background starts with the generated kagari-bi scene and changes every three seconds, without on-image controls or annotations. The next image is decoded before transition; playback pauses when offscreen or in a hidden tab. Reduced-motion and data-saver preferences keep a static background. Credits and image disclaimers are grouped at `/privacy-policy/#images` and in `assets/images/credits.txt`.
-- `industry-*.webp`: responsive agriculture, metalworking and water-treatment images accompanying sector explanations. Edit the `industry-features` region on the home page and run `sync-layout.mjs` to update the existing investment-policy page; no separate sector routes are used.
-- `icon-play.svg`, `icon-pause.svg`: unused legacy Lucide assets; ISC license retained in `assets/images/lucide-LICENSE.txt`.
-- `kagaribi-*.webp`: generated shrine scene, used as the first automatic background. This is an AI-generated illustration, not a photograph of an actual shrine; that distinction is noted with the centralized image credits.
-
-Generation direction for the kagari-bi image: photorealistic, wide 16:9 editorial photograph of a fictional modest Shinto courtyard at blue hour; a traditional weathered iron fire basket on the right third, natural small gold flames and glowing wood; cedar trees, shrine eaves and stone visible; quiet darker space on the left for copy. Dignified documentary character, subtle grain. No people, text, logos, watermark, dramatic sparks, heavy smoke, bokeh or oversaturated orange.
-
-## Release Checks
-
-- Test all 19 content routes and the investment URL redirect at desktop, tablet and mobile sizes, including 320px width.
-- Run `node scripts/check-site.mjs` and `node scripts/update-fonts.mjs --check` before the release build.
-- Check keyboard navigation, Escape-to-close, visible focus, text resizing, reduced motion and JavaScript-disabled navigation.
-- Run automated WCAG A/AA checks and visually check text over images.
-- Verify internal links, image loading and absence of unpublished member identities.
-- Verify the live pages, `robots.txt` and sitemap after deployment.
+- `check-site.mjs`: public routes, internal references, retired terminology (with explicit preserved-copy exceptions), redirects, sitemap and metadata assets.
+- `update-fonts.mjs --check`: font character coverage.
+- Test desktop/tablet/mobile layouts, including 320px and 375px; verify the fire basket framing, business/contact grids, photo strip and Fuji background.
+- Test keyboard navigation, Escape, focus states, JavaScript-disabled navigation, image loading and accessibility contrast.
+- Compare preserved passages and company details against the previous approved version. Keep news, electronic notice content and privacy policy body unchanged.
+- Verify the hosted preview's pages, redirects and noindex behavior before sending its URL for approval. Production must remain unchanged during preview.

@@ -5,21 +5,15 @@ import { fileURLToPath } from "node:url";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
 const preview = process.argv.includes("--preview");
+const hostedPreview = process.env.VERCEL_ENV === "preview";
 const routes = [
   "",
   "business",
   "consulting",
   "philosophy",
   "investment-policy",
-  "investment-themes",
-  "value-up",
   "team",
-  "process",
   "contact",
-  "contact/owners",
-  "contact/consulting",
-  "contact/advisors",
-  "contact/general",
   "group",
   "case-studies",
   "news",
@@ -66,6 +60,11 @@ const cssName = `site-${crypto.createHash("sha256").update(css).digest("hex").sl
 for (const route of routes) {
   const file = path.join(route, "index.html");
   let html = await fs.readFile(path.join(root, file), "utf8");
+  if (hostedPreview)
+    html = html.replace(
+      /name="robots"\s+content="[^"]*"/,
+      'name="robots" content="noindex, nofollow"',
+    );
   const fontHref = html.match(/href="(\/assets\/css\/fonts\.css[^\"]*)"/)?.[1];
   html = html.replace(/\s*<link\s+rel="preload"\s+as="font"[^>]*>/g, "");
   let bundled = false;
@@ -89,7 +88,6 @@ for (const route of routes) {
 for (const file of [
   "assets/css",
   "assets/js",
-  "assets/images",
   "favicon.png",
   "favicon.svg",
   "site.webmanifest",
@@ -97,7 +95,19 @@ for (const file of [
   "sitemap.xml",
 ])
   await copy(file);
+for (const file of await fs.readdir(path.join(root, "assets/images"))) {
+  if (
+    /\.(?:png|webp|avif|svg|jpe?g)$/i.test(file) &&
+    !/^kagari-og-20261108|^kagaribi-(?:840|1680)|^icon-/.test(file)
+  )
+    await copy(`assets/images/${file}`);
+}
 await fs.writeFile(path.join(destination, "assets/css", cssName), css);
+if (hostedPreview)
+  await fs.writeFile(
+    path.join(destination, "robots.txt"),
+    "User-agent: *\nDisallow: /\n",
+  );
 for (const file of await fs.readdir(path.join(root, "assets/fonts"))) {
   if (file.endsWith(".woff2") || file.endsWith(".txt"))
     await copy(`assets/fonts/${file}`);

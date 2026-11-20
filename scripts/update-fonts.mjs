@@ -64,8 +64,11 @@ if (process.argv.includes("--check")) {
   const used = new Set();
   let japaneseFont;
   const requests = [
-    ["Noto Serif JP:wght@500", characters],
-    ["Noto Sans JP:wght@400", characters],
+    ["Noto Serif JP:wght@400..600", characters],
+    [
+      "Cinzel:wght@600",
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 ,.-&",
+    ],
     [
       "Cormorant Garamond:wght@500..600",
       [...characters].filter((char) => char.codePointAt(0) < 256).join(""),

@@ -3,25 +3,76 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-const root = fileURLToPath(new URL("../.review/site/", import.meta.url));
+const root = fileURLToPath(
+  new URL(
+    process.argv.includes("--dist") ? "../dist/" : "../.review/site/",
+    import.meta.url,
+  ),
+);
+const config = JSON.parse(
+  await fs.readFile(new URL("../vercel.json", import.meta.url), "utf8"),
+);
 await fs.access(path.join(root, "index.html"));
-const mime = { ".html": "text/html; charset=utf-8", ".css": "text/css; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".xml": "application/xml", ".txt": "text/plain; charset=utf-8", ".webmanifest": "application/manifest+json", ".png": "image/png", ".webp": "image/webp", ".svg": "image/svg+xml", ".woff2": "font/woff2" };
+const mime = {
+  ".html": "text/html; charset=utf-8",
+  ".css": "text/css; charset=utf-8",
+  ".js": "text/javascript; charset=utf-8",
+  ".xml": "application/xml",
+  ".txt": "text/plain; charset=utf-8",
+  ".webmanifest": "application/manifest+json",
+  ".png": "image/png",
+  ".webp": "image/webp",
+  ".svg": "image/svg+xml",
+  ".woff2": "font/woff2",
+};
 const server = http.createServer(async (request, response) => {
   try {
-    if (!["GET", "HEAD"].includes(request.method)) { response.writeHead(405); response.end(); return; }
-    const pathname = decodeURIComponent(new URL(request.url, "http://localhost").pathname);
+    if (!["GET", "HEAD"].includes(request.method)) {
+      response.writeHead(405);
+      response.end();
+      return;
+    }
+    const pathname = decodeURIComponent(
+      new URL(request.url, "http://localhost").pathname,
+    );
+    const redirect = config.redirects.find((rule) => {
+      const source = rule.source.replace("/:path*", "");
+      return pathname === source || pathname.startsWith(source + "/");
+    });
+    if (redirect) {
+      response.writeHead(redirect.statusCode || 308, {
+        Location: redirect.destination,
+      });
+      response.end();
+      return;
+    }
     let file = path.resolve(root, "." + pathname);
     const relative = path.relative(root, file);
-    if (relative.startsWith("..") || path.isAbsolute(relative)) throw new Error("Invalid path");
-    if ((await fs.stat(file)).isDirectory()) file = path.join(file, "index.html");
+    if (relative.startsWith("..") || path.isAbsolute(relative))
+      throw new Error("Invalid path");
+    if ((await fs.stat(file)).isDirectory())
+      file = path.join(file, "index.html");
     const data = await fs.readFile(file);
-    response.writeHead(200, { "Content-Type": mime[path.extname(file)] || "application/octet-stream", "Cache-Control": "no-store", "X-Content-Type-Options": "nosniff" });
+    response.writeHead(200, {
+      "Content-Type": mime[path.extname(file)] || "application/octet-stream",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+    });
     response.end(request.method === "HEAD" ? undefined : data);
-  } catch { response.writeHead(404); response.end("Not found"); }
+  } catch {
+    response.writeHead(404);
+    response.end("Not found");
+  }
 });
 let port = 4167;
-server.on("error", error => {
-  if (error.code === "EADDRINUSE" && port < 4187) server.listen(++port, "127.0.0.1");
-  else { console.error(error); process.exit(1); }
+server.on("error", (error) => {
+  if (error.code === "EADDRINUSE" && port < 4187)
+    server.listen(++port, "127.0.0.1");
+  else {
+    console.error(error);
+    process.exit(1);
+  }
 });
-server.listen(port, "127.0.0.1", () => console.log(`Local review: http://127.0.0.1:${server.address().port}/`));
+server.listen(port, "127.0.0.1", () =>
+  console.log(`Local review: http://127.0.0.1:${server.address().port}/`),
+);
